@@ -1,0 +1,36 @@
+{
+  "name": "express-api",
+  "version": "1.0.0",
+  "description": "REST API, написанный на Express, с подключением базы данных MongoDB с помощью библиотеки Mongoose. API предоставляет возможность выполнять CRUD-операции с данными, используя HTTP-запросы",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VladyslavDobrovolskyi/express-api.git"
+  },
+  "keywords": [
+    "express",
+    "mongodb",
+    "mongoose",
+    "api"
+  ],
+  "author": "VladyslavDobrovolskyi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/VladyslavDobrovolskyi/express-api/issues"
+  },
+  "homepage": "https://github.com/VladyslavDobrovolskyi/express-api#readme",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongodb": "^5.6.0",
+    "mongoose": "^7.3.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
