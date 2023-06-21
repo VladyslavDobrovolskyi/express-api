@@ -6,7 +6,9 @@ const app = express()
 const morgan = require('morgan')
 
 const mongoose = require('mongoose')
+
 const User = require('./models/User')
+const userRoute = require('./routes/User')
 
 const PORT = process.env.PORT || 3000
 const DB_URL = process.env.DB_URL
@@ -18,6 +20,8 @@ mongoose
 
 app.use(morgan(process.env.LOG_LEVEL))
 
+app.use('/users', userRoute)
+
 app.listen(PORT, (error) => {
     error
         ? console.log(`Server: ${error.message}`)
@@ -27,12 +31,4 @@ app.listen(PORT, (error) => {
 
 app.get('/', (req, res) => {
     res.end(`<h1>127.0.0.1:${PORT}</h1>`)
-})
-
-app.get('/users', (req, res) => {
-    User.find()
-        .then((users) => {
-            res.status(200).json(users)
-        })
-        .catch((error) => console.log(error))
 })
