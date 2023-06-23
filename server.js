@@ -7,8 +7,7 @@ const morgan = require('morgan')
 
 const mongoose = require('mongoose')
 
-const User = require('./models/User')
-const userRoute = require('./routes/User')
+const Router = require('./routes/User')
 
 const PORT = process.env.PORT || 3000
 const DB_URL = process.env.DB_URL
@@ -20,7 +19,7 @@ mongoose
 
 app.use(morgan(process.env.LOG_LEVEL))
 
-app.use('/users', userRoute)
+app.use('/users', Router)
 
 app.listen(PORT, (error) => {
     error
