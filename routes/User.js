@@ -1,13 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const User = require('../models/User')
+const { getUsers } = require('../controllers/UserController')
 
-router.get('/', (req, res) => {
-    User.find()
-        .then((users) => {
-            res.status(200).json(users)
-        })
-        .catch((error) => console.log(error))
-})
+router.get('/', getUsers)
 
 module.exports = router
