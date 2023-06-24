@@ -19,15 +19,18 @@ mongoose
 
 app.use(morgan(process.env.LOG_LEVEL))
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
 app.use('/users', Router)
+
+app.get('/', (req, res) => {
+    res.end(`<h1>127.0.0.1:${PORT}</h1>`)
+})
 
 app.listen(PORT, (error) => {
     error
         ? console.log(`Server: ${error.message}`)
         : console.log(`Server: Started successfully,
             Listening on 127.0.0.1:${PORT}`)
-})
-
-app.get('/', (req, res) => {
-    res.end(`<h1>127.0.0.1:${PORT}</h1>`)
 })
