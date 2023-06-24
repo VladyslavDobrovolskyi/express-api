@@ -6,6 +6,7 @@ const app = express()
 const morgan = require('morgan')
 const helmet = require('helmet')
 const mongoose = require('mongoose')
+const sanitizer = require('express-mongo-sanitize')
 
 const Router = require('./routes/User')
 
@@ -21,7 +22,7 @@ app.use(morgan(process.env.LOG_LEVEL))
 app.use(helmet())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-
+app.use(sanitizer())
 app.use('/users', Router)
 
 app.get('/', (req, res) => {
