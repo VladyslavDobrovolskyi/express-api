@@ -25,6 +25,29 @@ const getUserById = async (req, res) => {
 }
 
 const editUserById = async (req, res) => {
+
+    if (req.body.phoneNumber) {
+        const existingUser = await User.findOne({
+            phoneNumber: req.body.phoneNumber,
+        })
+        if (existingUser) {
+            return res.status(400).json({
+                error: `User with this number already exists.`,
+            })
+        }
+    }
+
+    if (req.body.emailAddress) {
+        const existingUser = await User.findOne({
+            emailAddress: req.bod,
+        })
+        if (existingUser) {
+            return res.status(400).json({
+                error: `User with this email already exists.`,
+            })
+        }
+    }
+
     try {
         const id = req.params.id
         const updates = req.body
@@ -49,7 +72,7 @@ const deleteUserById = async (req, res) => {
         if (!deletedUser) {
             return res.status(404).json({ message: 'User not found.' })
         }
-        res.json({ message: 'User deleted' })
+        res.json({ message: 'User deleted.' })
     } catch (error) {
         console.error(error)
         res.status(500).json({ error: 'Internal Server Error.' })
@@ -57,13 +80,27 @@ const deleteUserById = async (req, res) => {
 }
 
 const createUser = async (req, res) => {
-    const existingUser = await User.findOne({
-        emailAddress: req.body.emailAddress,
-    })
-    if (existingUser) {
-        return res
-            .status(400)
-            .json({ error: 'User with this email already exists.' })
+
+    if (req.body.phoneNumber) {
+        const existingUser = await User.findOne({
+            phoneNumber: req.body.phoneNumber,
+        })
+        if (existingUser) {
+            return res.status(400).json({
+                error: `User with this number already exists.`,
+            })
+        }
+    }
+
+    if (req.body.emailAddress) {
+        const existingUser = await User.findOne({
+            emailAddress: req.bod,
+        })
+        if (existingUser) {
+            return res.status(400).json({
+                error: `User with this email already exists.`,
+            })
+        }
     }
 
     const user = new User({

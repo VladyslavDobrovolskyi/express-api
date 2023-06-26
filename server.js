@@ -24,8 +24,8 @@ app.use(sanitizer())
 
 app.use('/users', Router)
 
-app.get('/', (req, res) => {
-    res.send(`<h1>127.0.0.1:${PORT}</h1>`)
+app.get('*', (req, res) => {
+    res.send(`<a>https://github.com/VladyslavDobrovolskyi/express-api</a>`)
 })
 
 app.listen(PORT, (error) => {
