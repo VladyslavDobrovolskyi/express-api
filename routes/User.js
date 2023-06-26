@@ -1,13 +1,17 @@
 const express = require('express')
 const router = express.Router()
-const User = require('../models/User')
+const {
+    getUsers,
+    getUserById,
+    editUserById,
+    deleteUserById,
+    createUser,
+} = require('../controllers/UserController')
 
-router.get('/', (req, res) => {
-    User.find()
-        .then((users) => {
-            res.status(200).json(users)
-        })
-        .catch((error) => console.log(error))
-})
+router.get('/', getUsers)
+router.get('/:id', getUserById)
+router.put('/:id', editUserById)
+router.delete('/:id', deleteUserById)
+router.post('/', createUser)
 
 module.exports = router
