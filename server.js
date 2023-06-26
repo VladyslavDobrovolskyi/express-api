@@ -10,7 +10,9 @@ const sanitizer = require('express-mongo-sanitize')
 
 const Router = require('./routes/User')
 
+// eslint-disable-next-line no-undef
 const PORT = process.env.PORT || 3000
+// eslint-disable-next-line no-undef
 const DB_URL = process.env.DB_URL
 
 mongoose
@@ -18,6 +20,7 @@ mongoose
     .then(() => console.log(`Database: Successfully connected`))
     .catch((err) => console.log(`Database: Connection ERROR (${err.message})`))
 
+// eslint-disable-next-line no-undef
 app.use(morgan(process.env.LOG_LEVEL))
 app.use(helmet())
 app.use(express.json())
