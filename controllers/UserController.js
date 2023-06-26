@@ -1,5 +1,4 @@
 const User = require('../models/User')
-const phoneFormater = require('../utils/phoneFormater')
 
 const getUsers = async (req, res) => {
     try {
@@ -58,14 +57,14 @@ const createUser = async (req, res) => {
     const user = new User({
         firstName: req.body.firstName,
         secondName: req.body.secondName,
-        phoneNumber: phoneFormater(req.body.phoneNumber),
+        phoneNumber: req.body.phoneNumber,
     })
 
     try {
         const savedUser = await user.save()
-        res.json(savedUser)
+        res.status(201).json(savedUser)
     } catch (err) {
-        res.json({ error: err })
+        res.status(400).json({ error: err })
     }
 }
 

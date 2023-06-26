@@ -10,6 +10,7 @@ const userSchema = new Schema(
             minlength: 2,
             trim: true,
             required: true,
+            match: /^([А-ЯЁ][а-яё]{1,}|[A-Z][a-z]{1,})$/,
         },
         secondName: {
             type: String,
@@ -17,6 +18,15 @@ const userSchema = new Schema(
             minlength: 2,
             trim: true,
             required: true,
+            match: /^([А-ЯЁ][а-яё]{1,}|[A-Z][a-z]{1,})$/,
+        },
+        emailAddress: {
+            type: String,
+            maxlength: 255,
+            minlength: 2,
+            trim: true,
+            required: false,
+            match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
         },
         phoneNumber: {
             type: String,
@@ -24,10 +34,12 @@ const userSchema = new Schema(
             minlength: 10,
             required: true,
             trim: true,
+            match: /^\+380\d{9}$/,
         },
         createdAt: {
             type: Date,
             default: Date.now,
+            immutable: true,
         },
     },
     { versionKey: false }
