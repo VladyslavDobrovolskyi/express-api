@@ -29,7 +29,7 @@ app.use(sanitizer())
 app.use('/users', Router)
 
 app.get('/', (req, res) => {
-    res.end(`<h1>127.0.0.1:${PORT}</h1>`)
+    res.send(`<h1>127.0.0.1:${PORT}</h1>`)
 })
 
 app.listen(PORT, (error) => {
