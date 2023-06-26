@@ -26,7 +26,8 @@ const userSchema = new Schema(
             minlength: 2,
             trim: true,
             required: false,
-            match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+            unique: true,
+            match: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
         },
         phoneNumber: {
             type: String,
