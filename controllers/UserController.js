@@ -39,7 +39,7 @@ const editUserById = async (req, res) => {
 
     if (req.body.emailAddress) {
         const existingUser = await User.findOne({
-            emailAddress: req.bod,
+            emailAddress: req.body.emailAddress,
         })
         if (existingUser) {
             return res.status(400).json({
@@ -94,7 +94,7 @@ const createUser = async (req, res) => {
 
     if (req.body.emailAddress) {
         const existingUser = await User.findOne({
-            emailAddress: req.bod,
+            emailAddress: req.body.emailAddress,
         })
         if (existingUser) {
             return res.status(400).json({
