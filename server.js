@@ -12,9 +12,9 @@ const mongoose = require('mongoose')
 const sanitizer = require('express-mongo-sanitize')
 
 mongoose
-    .connect(process.env.DB_URL)
-    .then(() => console.log(`Database: Successfully connected`))
-    .catch((err) => console.log(`Database: Connection ERROR (${err.message})`))
+  .connect(process.env.DB_URL)
+  .then(() => console.log(`Database: Successfully connected`))
+  .catch(err => console.log(`Database: Connection ERROR (${err.message})`))
 
 app.use(morgan(process.env.LOG_LEVEL))
 app.use(helmet())
@@ -25,12 +25,12 @@ app.use(sanitizer())
 app.use('/users', Router)
 
 app.get('*', (req, res) => {
-    res.send(`<a>https://github.com/VladyslavDobrovolskyi/express-api</a>`)
+  res.send(`<a>https://github.com/VladyslavDobrovolskyi/express-api</a>`)
 })
 
-app.listen(PORT, (error) => {
-    error
-        ? console.log(`Server: ${error.message}`)
-        : console.log(`Server: Started successfully,
+app.listen(PORT, error => {
+  error
+    ? console.log(`Server: ${error.message}`)
+    : console.log(`Server: Started successfully,
             Listening on 127.0.0.1:${PORT}`)
 })
