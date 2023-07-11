@@ -1,0 +1,6 @@
+GET http://localhost:3000/token
+
+
+###
+GET http://localhost:3000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRlIjoiNzExMjAyMzEyMjIxNiIsImlhdCI6MTY4OTA3ODEzNiwiZXhwIjoxNjg5MDc4MTUxfQ.CiggQ531SC1lPUJXv88M4vsxckmztxCDdUCbJLwhf8w

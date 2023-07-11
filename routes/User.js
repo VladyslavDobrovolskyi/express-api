@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const {
-    getUsers,
-    getUserById,
-    editUserById,
-    deleteUserById,
-    createUser,
+  getUsers,
+  getUserById,
+  editUserById,
+  deleteUserById,
+  createUser,
 } = require('../controllers/UserController')
 
 router.get('/', getUsers)

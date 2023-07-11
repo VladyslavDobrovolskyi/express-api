@@ -5,11 +5,12 @@ const app = express()
 const PORT = process.env.PORT || 3000
 
 const Router = require('./routes/User')
-
+const jwt = require('jsonwebtoken')
 const morgan = require('morgan')
 const helmet = require('helmet')
 const mongoose = require('mongoose')
 const sanitizer = require('express-mongo-sanitize')
+const authenticateToken = require('./middlewares/authenticateToken')
 
 mongoose
   .connect(process.env.DB_URL)
@@ -22,7 +23,23 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(sanitizer())
 
-app.use('/users', Router)
+app.get('/token', (req, res) => {
+  const token = () => {
+    const formattedDateTime = new Date()
+      .toLocaleString('en-US', { timeZone: 'UTC', hour12: false })
+      .replace(/[^\d]/g, '')
+    return jwt.sign(
+      { date: formattedDateTime },
+      process.env.ACCESS_TOKEN_SECRET,
+      {
+        expiresIn: '15s',
+      }
+    )
+  }
+  res.send(token())
+})
+
+app.use('/users', authenticateToken, Router)
 
 app.get('*', (req, res) => {
   res.send(`<a>https://github.com/VladyslavDobrovolskyi/express-api</a>`)
